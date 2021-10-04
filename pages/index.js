@@ -1,8 +1,17 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Counter from '../store/Counter'
+import { useSelector } from 'react-redux'
+
+import {
+  selectCount,
+} from '../store/counterSlice'
+
 
 export default function Home() {
+  const count = useSelector(selectCount)
+
   return (
     <div className="">
       <Head>
@@ -15,11 +24,14 @@ export default function Home() {
         <h1 className="">
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-
+        <p>{count}</p>
         <p className="">
           Get started by editing{' '}
           <code className="">pages/index.js</code>
         </p>
+
+        <Counter />
+
 
     </main>
 

@@ -1,7 +1,7 @@
-import Link from 'next/link';
+import Link from "next/link";
 // import { useSession, signOut } from 'next-auth/client';
 
-import classes from './main-navigation.module.css';
+import classes from "./main-navigation.module.css";
 
 function MainNavigation() {
   // const [session, loading] = useSession();
@@ -12,13 +12,19 @@ function MainNavigation() {
 
   return (
     <header className={classes.header}>
-      <Link href='/'>
+      <Link href="/">
         <a>
           <div className={classes.logo}>Next Auth</div>
         </a>
       </Link>
       <nav>
         <ul>
+          <li>
+            <Link href="/auth">Login</Link>
+          </li>
+          <li>
+            <Link href="/profile">profile</Link>
+          </li>
           {/* {!session && !loading && (
             <li>
               <Link href='/auth'>Login</Link>
