@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.test {
-  @apply bg-green-500
+.fit-height {
+  min-height: 70vh;
 }

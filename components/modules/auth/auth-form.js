@@ -1,5 +1,7 @@
 import { useState, useRef } from "react";
 import { useRouter } from "next/router";
+import { useAppDispatch } from "../../../hooks/hooks";
+import { login } from "../../../store/authSlice";
 
 async function signIn(email, password) {
   const response = await fetch("http://localhost:4000/v1/login", {
@@ -38,6 +40,8 @@ async function signUp(email, password) {
 }
 
 function AuthForm() {
+  const dispatch = useAppDispatch();
+
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
@@ -59,7 +63,9 @@ function AuthForm() {
     if (isLogin) {
       try {
         const responseData = await signIn(enteredEmail, enteredPassword);
-        localStorage.setItem("kyupsr", JSON.stringify(responseData.user.token));
+        console.log(responseData.user);
+        dispatch(login(responseData.user));
+        // localStorage.setItem("kyupsr", JSON.stringify(responseData.user.token));
         await router.push("/");
       } catch (error) {
         console.log(error);
@@ -94,11 +100,7 @@ function AuthForm() {
         </div>
         <div className="">
           <button>{isLogin ? "Login" : "Create Account"}</button>
-          <button
-            type="button"
-            className=""
-            onClick={switchAuthModeHandler}
-          >
+          <button type="button" className="" onClick={switchAuthModeHandler}>
             {isLogin ? "Create new account" : "Login with existing account"}
           </button>
         </div>
