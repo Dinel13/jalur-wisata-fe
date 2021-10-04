@@ -1,12 +1,7 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { useSelector } from "react-redux";
-
-import { selectCount } from "../store/counterSlice";
 
 export default function Home() {
-  const count = useSelector(selectCount);
-
   return (
     <div className="">
       <Head>

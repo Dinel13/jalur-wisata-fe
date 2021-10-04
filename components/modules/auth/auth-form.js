@@ -2,9 +2,10 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-import { useAppDispatch } from "../../../hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 import { login } from "../../../store/authSlice";
 import { ButtonPending, ButtonSubmit } from "../../elements/button";
+import { notifData, showNotification } from "../../../store/notifSlice";
 
 async function signIn(email, password) {
   const response = await fetch("http://localhost:4000/v1/login", {
@@ -76,19 +77,22 @@ function AuthForm() {
       dispatch(login(responseData.user));
       await router.push("/");
     } catch (error) {
+      dispatch(showNotification({ message: error.message, status: "Confirm", action: () => alert("gg")} ));
       setIsLoading(false);
-      console.log(error.message);
     }
   }
+  const {message, action, status}= useAppSelector(notifData)
+
 
   return (
-    <div className="form-card dark:bg-gray-800 text-white">
-      <h1 className="text-3xl font-semibold text-center text-gray-700 dark:text-white">
+    <div className="form-card dark:bg-gray-800 text-gray-700">
+      <h1 className="text-3xl font-semibold text-center dark:text-white">
         {isLogin ? "Masuk" : "Daftar"} ke Jalur-Wisata
+        {message, action, status}
       </h1>
       <form className="mt-6" onSubmit={submitHandler}>
         <div>
-          <label htmlFor="email" className="block text-sm  dark:text-gray-200">
+          <label htmlFor="email" className="block text-sm">
             Email
           </label>
           <input
@@ -97,14 +101,14 @@ function AuthForm() {
             autoComplete="email"
             id="email"
             required
-            className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+            className="block w-full px-4 py-2 mt-2 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
           />
         </div>
         <div className="mt-4">
           <div className="flex items-center justify-between">
             <label
               htmlFor="password"
-              className="block text-sm text-gray-800 dark:text-gray-200"
+              className="block text-sm  dark:text-gray-200"
             >
               Password
             </label>

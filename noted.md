@@ -8,3 +8,5 @@ git push origin :frontend
 ghapus repo remote
 
 
+niil value di redux karena lupa pake useselctor malah langsung panggil isi redux
+
