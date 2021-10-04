@@ -10,3 +10,8 @@ ghapus repo remote
 
 niil value di redux karena lupa pake useselctor malah langsung panggil isi redux
 
+no multipart boundary param in Content-Type
+hapus  content type di header karena fetch akan autoi pasang
+
+
+

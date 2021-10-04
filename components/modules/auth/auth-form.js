@@ -85,7 +85,7 @@ function AuthForm() {
 
 
   return (
-    <div className="form-card dark:bg-gray-800 text-gray-700">
+    <div className="form-card max-w-md">
       <h1 className="text-3xl font-semibold text-center dark:text-white">
         {isLogin ? "Masuk" : "Daftar"} ke Jalur-Wisata
         {message, action, status}
