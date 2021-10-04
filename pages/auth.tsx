@@ -10,24 +10,12 @@ function AuthPage() {
   const router = useRouter();
 
   const count = useSelector(selectCount);
-
-  //   useEffect(() => {
-  //     getSession().then((session) => {
-  //       if (session) {
-  //         router.replace('/');
-  //       } else {
-  //         setIsLoading(false);
-  //       }
-  //     });
-  //   }, [router]);
-
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
   return (
     <>
-      {count}
       <AuthForm />
     </>
   );

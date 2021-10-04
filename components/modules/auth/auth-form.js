@@ -1,7 +1,10 @@
 import { useState, useRef } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
+
 import { useAppDispatch } from "../../../hooks/hooks";
 import { login } from "../../../store/authSlice";
+import { ButtonPending, ButtonSubmit } from "../../elements/button";
 
 async function signIn(email, password) {
   const response = await fetch("http://localhost:4000/v1/login", {
@@ -16,7 +19,7 @@ async function signIn(email, password) {
   });
   const data = await response.json();
   if (!response.ok) {
-    throw new Error(data.message || "Something went wrong!");
+    throw new Error(data.error.message || "Something went wrong!");
   }
   return data;
 }
@@ -34,7 +37,7 @@ async function signUp(email, password) {
   });
   const data = await response.json();
   if (!response.ok) {
-    throw new Error(data.message || "Something went wrong!");
+    throw new Error(data.error.message || "Something went wrong!");
   }
   return data;
 }
@@ -46,6 +49,7 @@ function AuthForm() {
   const passwordInputRef = useRef();
 
   const [isLogin, setIsLogin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   function switchAuthModeHandler() {
@@ -54,58 +58,90 @@ function AuthForm() {
 
   async function submitHandler(event) {
     event.preventDefault();
-
+    setIsLoading(true);
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
-
     // optional: Add validation
 
-    if (isLogin) {
-      try {
-        const responseData = await signIn(enteredEmail, enteredPassword);
-        console.log(responseData.user);
-        dispatch(login(responseData.user));
-        // localStorage.setItem("kyupsr", JSON.stringify(responseData.user.token));
-        await router.push("/");
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      try {
-        const responseData = await signUp(enteredEmail, enteredPassword);
-        localStorage.setItem("kyupsr", JSON.stringify(responseData.user.token));
-        await router.push("/");
-      } catch (error) {
-        console.log(error);
-      }
+    // determine if user wants to login or signup
+    let signinOrSignup;
+    isLogin
+      ? (signinOrSignup = () => signIn(enteredEmail, enteredPassword))
+      : (signinOrSignup = () => signUp(enteredEmail, enteredPassword));
+
+    // send request to server
+    // then dispatch action to store
+    try {
+      const responseData = await signinOrSignup();
+      dispatch(login(responseData.user));
+      await router.push("/");
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error.message);
     }
   }
 
   return (
-    <section className="m-10 mx-auto w-11/12 max-w-md rounded bg-purple-900 shadow p-1 text-center">
-      <h1>{isLogin ? "Login" : "Sign Up"}</h1>
-      <form onSubmit={submitHandler}>
-        <div className="mb-2">
-          <label htmlFor="email">Your Email</label>
-          <input type="email" id="email" required ref={emailInputRef} />
-        </div>
-        <div className="mb-2">
-          <label htmlFor="password">Your Password</label>
+    <div className="form-card dark:bg-gray-800 text-white">
+      <h1 className="text-3xl font-semibold text-center text-gray-700 dark:text-white">
+        {isLogin ? "Masuk" : "Daftar"} ke Jalur-Wisata
+      </h1>
+      <form className="mt-6" onSubmit={submitHandler}>
+        <div>
+          <label htmlFor="email" className="block text-sm  dark:text-gray-200">
+            Email
+          </label>
           <input
-            type="password"
-            id="password"
+            ref={emailInputRef}
+            type="email"
+            autoComplete="email"
+            id="email"
             required
-            ref={passwordInputRef}
+            className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
           />
         </div>
-        <div className="">
-          <button>{isLogin ? "Login" : "Create Account"}</button>
-          <button type="button" className="" onClick={switchAuthModeHandler}>
-            {isLogin ? "Create new account" : "Login with existing account"}
-          </button>
+        <div className="mt-4">
+          <div className="flex items-center justify-between">
+            <label
+              htmlFor="password"
+              className="block text-sm text-gray-800 dark:text-gray-200"
+            >
+              Password
+            </label>
+            <Link
+              href="/lupa-password"
+              className="text-xs text-indigo-600 dark:text-gray-400 hover:underline"
+            >
+              Lupa Password?
+            </Link>
+          </div>
+          <input
+            ref={passwordInputRef}
+            type="password"
+            autoComplete="current-password"
+            id="password"
+            required
+            className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+          />
+        </div>
+        <div className="mt-6">
+          {isLoading ? (
+            <ButtonPending />
+          ) : (
+            <ButtonSubmit text={isLogin ? "Masuk" : "Daftar"} />
+          )}
         </div>
       </form>
-    </section>
+      <p className="mt-8 text-sm font-light text-center text-gray-700">
+        Belum Punya Akun?{" "}
+        <button
+          onClick={switchAuthModeHandler}
+          className="font-medium text-pink-800 dark:text-gray-200 hover:underline"
+        >
+          {isLogin ? "DAFTAR" : "MASUK"}
+        </button>
+      </p>
+    </div>
   );
 }
 

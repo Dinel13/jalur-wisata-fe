@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  ol,
+  ul {
+    /* list-style: none;
+    margin: 0;
+    padding: 0; */
+  }
+
+  blockquote {
+    background: #f0e9e9;
+    border-left: 5px solid #ccc;
+    margin: 1.1em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+  }
+  blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+  }
+
+  .btn-pri {
+    @apply bg-pink-600 text-white focus:outline-none hover:bg-pink-700  rounded transition-colors duration-150;
+  }
+
+  .btn-sec {
+    @apply text-white bg-red-600 focus:outline-none hover:bg-red-500 rounded transition-colors duration-150;
+  }
+
+  .btn-ter {
+    @apply text-white bg-red-700 focus:outline-none hover:bg-red-600 rounded transition-colors duration-150;
+  }
+
+  .form-card {
+    @apply w-full max-w-md my-10 p-10 m-auto bg-gray-100 border-gray-300 border rounded-md shadow-xl;
+  }
+}
+
+.fit-height {
+  min-height: 70vh;
+}
