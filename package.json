@@ -16,6 +16,8 @@
     "react-redux": "^7.2.5"
   },
   "devDependencies": {
+    "@types/next": "^9.0.0",
+    "@types/react": "^17.0.27",
     "autoprefixer": "^10.3.6",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
