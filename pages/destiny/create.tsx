@@ -1,7 +1,10 @@
-import { useState, useRef } from "react";
+import { useRouter } from "next/router";
+import { useState, useRef, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { ButtonPending, ButtonSubmit } from "../../components/elements/button";
 import { useAppDispatch } from "../../hooks/hooks";
-import { showNotification } from "../../store/notifSlice";
+import { getToken, selectName } from "../../store/authSlice";
+import { hideNotification, showNotification } from "../../store/notifSlice";
 
 const CreatDestiny = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,6 +14,27 @@ const CreatDestiny = () => {
   const ratingRef = useRef<HTMLInputElement>(null);
   const categoryRef = useRef<HTMLSelectElement>(null);
   const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  const userName = useSelector(selectName);
+  const token = useSelector(getToken)
+
+  useEffect(() => {
+    if (!userName) {
+      dispatch(
+        showNotification({
+          message: "Anda harus login terlebih dahulu",
+          status: "Error",
+          action: null,
+        })
+      );
+      // settimeoput to hide notif and redirect to auth page
+      setTimeout(() => {
+        dispatch(hideNotification());
+        router.push("/auth");
+      }, 2000);
+    }
+  });
 
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -24,14 +48,19 @@ const CreatDestiny = () => {
     try {
       const response = await fetch("http://localhost:4000/v1/destiny", {
         method: "POST",
-        headers: {},
+        // attach token in header
+        headers : {
+          "Authorization" : `Bearer ${token}`
+        },
         body: formdata,
       });
       const data = await response.json();
+      console.log(data);
+      
       if (!response.ok) {
         throw new Error(data.error.message);
       }
-      console.log(data);
+      router.push(`/destiny/${data.destiny.id}`)
     } catch (error) {
       console.log(error);
       dispatch(

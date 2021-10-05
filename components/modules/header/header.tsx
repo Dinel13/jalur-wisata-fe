@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 import { logout, selectName } from "../../../store/authSlice";
 
-function MainNavigation() {
+const MainNavigation: FC = () => {
   const dispatch = useAppDispatch();
   const name = useAppSelector(selectName);
 
@@ -15,6 +16,12 @@ function MainNavigation() {
       </Link>
       <nav>
         <ul className="flex">
+          <li className="px-2">
+            <Link href="/destiny">All Destiny</Link>
+          </li>
+          <li className="px-2">
+            <Link href="/destiny/create">New Destiny</Link>
+          </li>
           {name ? (
             <div className="flex items-center">
               <li>
@@ -33,6 +40,6 @@ function MainNavigation() {
       </nav>
     </header>
   );
-}
+};
 
 export default MainNavigation;
