@@ -11,7 +11,7 @@ const MainNavigation: FC = () => {
     <header className="w-full bg-pink-800 text-white px-6 py-4 flex justify-between items-center ">
       <Link href="/">
         <a>
-          <div className="text-2xl font-bold">Next Auth</div>
+          <div className="text-2xl font-bold">Jalur Wisata</div>
         </a>
       </Link>
       <nav>

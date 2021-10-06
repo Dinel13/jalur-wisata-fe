@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Hero from "../components/modules/hero/Hero";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -11,13 +12,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.test}>
-        <h1 className="">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-        <p className="">
-          Get started by editing <code className="">pages/index.js</code>
-        </p>
-        {/* <Counter /> */}
+        <Hero />
       </main>
     </div>
   );
