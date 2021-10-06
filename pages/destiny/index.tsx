@@ -22,7 +22,7 @@ const AllDestiny = () => {
   return !destiny ? (
     <p>Loading...</p>
   ) : (
-    <section className="text-gray-600 body-font">
+    <section className="bg-white body-font">
       <div className="container px-5 pt-10 sm:pt-14 lg:pt-16 pb-8  mx-auto">
         <h1 className="text-center md:text-5xl lg:text-6xl text-4xl font-medium tracking-wider title-font mb-8 text-gray-800">
           Semua Tujuan

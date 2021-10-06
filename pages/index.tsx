@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Hero from "../components/modules/hero/Hero";
+import PopDestiny from "../components/modules/popDestiny/PopDestiny";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
 
       <main className={styles.test}>
         <Hero />
+        <PopDestiny />
       </main>
     </div>
   );

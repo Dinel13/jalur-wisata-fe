@@ -12,7 +12,7 @@ const Destiny = ({
 }: destinyProps): JSX.Element => {
   return (
     <div className="p-3 sm:w-1/2 md:w-1/3 lg:w-1/4">
-      <div className="h-full border-2 border-gray-300 border-opacity-60 shadow-lg rounded-lg overflow-hidden">
+      <div className="bg-white h-full border-2 border-gray-300 border-opacity-60 shadow-lg rounded-lg overflow-hidden">
         <Image
           className="lg:h-48 md:h-36 w-full object-cover object-center"
           src={`http://localhost:4000/assets/${image}`}
