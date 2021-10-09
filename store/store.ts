@@ -2,10 +2,11 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 
 import authReducer from "./authSlice";
 import notifReducer from "./notifSlice";
+import counterSlice from "./counterSlice"; 
 
 export function makeStore() {
   return configureStore({
-    reducer: { auth: authReducer, notif: notifReducer },
+    reducer: { auth: authReducer, notif: notifReducer, counter : counterSlice },
   });
 }
 
