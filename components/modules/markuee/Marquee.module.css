@@ -1,0 +1,10 @@
+.root {
+  @apply bg-black flex flex-col items-center justify-center;
+  height: 300px;
+}
+.container {
+  @apply flex flex-row items-center;
+}
+.container > * {
+  @apply flex-1 px-4 py-4 ;
+}

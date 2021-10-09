@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { destinyProps } from "../../../types/types";
 import Loading from "../../layout/loading/Loading";
-import Destiny from "../destiny/destiny";
+import Destiny from "../destiny/DestinyCard";
 
 const LatestDestiny = (): JSX.Element => {
   const [destiny, setDestiny] = useState<destinyProps[]>(null);
@@ -9,7 +9,7 @@ const LatestDestiny = (): JSX.Element => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://localhost:4000/v1/destinies`, {
+    fetch(`http://47.254.192.86:4000/v1/destinies`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -17,7 +17,6 @@ const LatestDestiny = (): JSX.Element => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.destiny);
         setDestiny(data.destiny);
         setIsLoading(false);
       });
@@ -34,6 +33,7 @@ const LatestDestiny = (): JSX.Element => {
           {destiny &&
             destiny.map((destiny: destinyProps) => (
               <Destiny
+                key={destiny.id}
                 id={destiny.id}
                 name={destiny.name}
                 description={destiny.description}
@@ -47,6 +47,6 @@ const LatestDestiny = (): JSX.Element => {
       <hr />
     </section>
   );
-}
+};
 
 export default LatestDestiny;

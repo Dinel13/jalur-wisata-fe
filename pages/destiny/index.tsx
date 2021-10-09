@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from "react";
-import Destiny from "../../components/modules/destiny/destiny";
+import DestinyCard from "../../components/modules/destiny/DestinyCard";
 import { destinyProps } from "../../types/types";
 
 const AllDestiny = () => {
   const [destiny, setDestiny] = useState<destinyProps[]>(null);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/destinies`, {
+    fetch(`http://47.254.192.86:4000/v1/destinies`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +30,7 @@ const AllDestiny = () => {
 
         <div className="flex flex-wrap -m-4">
           {destiny.map((destiny: destinyProps) => (
-            <Destiny
+            <DestinyCard
               id={destiny.id}
               name={destiny.name}
               description={destiny.description}

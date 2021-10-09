@@ -1,16 +1,17 @@
-/* eslint-disable @next/next/link-passhref */
 import Link from "next/link";
 
- function Footer() {
+function Footer(): JSX.Element {
   return (
     <footer className="text-white body-font bg-pink-800">
       <div className="container px-5 py-12 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-          <Link
-            href="/"
-            className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
-          >
-            <span className="text-xl font-semibold">Jalur-wisata</span>
+          <Link href="/">
+            <a
+              href=""
+              className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
+            >
+              <span className="text-xl font-semibold">Jalur-wisata</span>
+            </a>
           </Link>
           <p className="mt-2 text-sm text-gray-300">
             Berbagi dan temukan jalur-wisata yang menarik disekitarmu
@@ -23,27 +24,24 @@ import Link from "next/link";
             </h2>
             <nav className="list-none mb-10 text-gray-300">
               <li>
-                <Link
-                  href="/bacaan/kategori/Info kegiatan"
-                  className="hover:text-gray-800"
-                >
-                  Alam
+                <Link href="/bacaan/kategori/Info kegiatan">
+                  <a href="" className="hover:text-gray-800">
+                    Alam
+                  </a>
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/bacaan/kategori/Materi Kuliah"
-                  className="hover:text-gray-800"
-                >
-                  Kota
+                <Link href="/bacaan/kategori/Materi Kuliah">
+                  <a href="" className="hover:text-gray-800">
+                    Kota{" "}
+                  </a>
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/bacaan/kategori/Inspirasif"
-                  className="hover:text-gray-800"
-                >
-                  Adrenalin
+                <Link href="/bacaan/kategori/Inspirasif">
+                  <a href="" className="hover:text-gray-800">
+                    Adrenalin{" "}
+                  </a>
                 </Link>
               </li>
             </nav>
@@ -54,19 +52,17 @@ import Link from "next/link";
             </h2>
             <nav className="list-none mb-10 text-gray-300 ">
               <li>
-                <Link
-                  href="/about"
-                  className="hover:text-gray-800"
-                >
-                  Tentang jalur-wisata
+                <Link href="/about">
+                  <a href="" className="hover:text-gray-800">
+                    Tentang jalur-wisata{" "}
+                  </a>
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/developper"
-                  className="hover:text-gray-800"
-                >
-                  Tentang Pengembang
+                <Link href="/developper">
+                  <a href="" className="hover:text-gray-800">
+                    Tentang Pengembang{" "}
+                  </a>
                 </Link>
               </li>
             </nav>

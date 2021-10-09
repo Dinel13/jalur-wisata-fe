@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { destinyProps } from "../../../types/types";
 
-const Destiny = ({
+const DestinyCard = ({
   id,
   name,
   description,
@@ -15,7 +15,7 @@ const Destiny = ({
       <div className="bg-white h-full border-2 border-gray-300 border-opacity-60 shadow-lg rounded-lg overflow-hidden">
         <Image
           className="lg:h-48 md:h-36 w-full object-cover object-center"
-          src={`http://localhost:4000/assets/${image}`}
+          src={`http://47.254.192.86:4000/assets/${image}`}
           alt={name}
           width={0.2}
           height={0.13}
@@ -55,4 +55,4 @@ const Destiny = ({
   );
 };
 
-export default Destiny;
+export default DestinyCard;

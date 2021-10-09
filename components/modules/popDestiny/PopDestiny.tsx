@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { destinyProps } from "../../../types/types";
 import Loading from "../../layout/loading/Loading";
-import Destiny from "../destiny/destiny";
+import { DestinyCard, DestinyMarquee } from "../destiny";
+import Marquee from "../markuee";
 
 const PopDestiny = (): JSX.Element => {
   const [destiny, setDestiny] = useState<destinyProps[]>(null);
@@ -9,7 +10,7 @@ const PopDestiny = (): JSX.Element => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://localhost:4000/v1/destinies`, {
+    fetch(`http://47.254.192.86:4000/v1/pop-destinies`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -30,23 +31,27 @@ const PopDestiny = (): JSX.Element => {
           Destiny Populer
         </h1>
         <div className="flex flex-wrap -m-4 pb-10">
-          {isLoading && <Loading />}
-          {destiny &&
-            destiny.map((destiny: destinyProps) => (
-              <Destiny
-                id={destiny.id}
-                name={destiny.name}
-                description={destiny.description}
-                ratting={destiny.ratting}
-                image={destiny.image}
-                category={destiny.category}
-              />
-            ))}
+          {/* {isLoading && <Loading />} */}
+          {destiny && (
+            // <Marquee>
+              destiny.map((destiny: destinyProps) => (
+                <DestinyCard
+                  key={destiny.id}
+                  id={destiny.id}
+                  name={destiny.name}
+                  description={destiny.description}
+                  ratting={destiny.ratting}
+                  image={destiny.image}
+                  category={destiny.category}
+                />
+              ))
+            // </Marquee>
+          )}
         </div>
       </div>
       <hr />
     </section>
   );
-}
+};
 
 export default PopDestiny;
