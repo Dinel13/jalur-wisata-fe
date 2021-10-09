@@ -15,7 +15,7 @@ const DestinyCard = ({
       <div className="bg-white h-full border-2 border-gray-300 border-opacity-60 shadow-lg rounded-lg overflow-hidden">
         <Image
           className="lg:h-48 md:h-36 w-full object-cover object-center"
-          src={`http://47.254.192.86:4000/assets/${image}`}
+          src={`${process.env.NEXT_PUBLIC_API}/assets/${image}`}
           alt={name}
           width={0.2}
           height={0.13}

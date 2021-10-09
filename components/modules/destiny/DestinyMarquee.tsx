@@ -15,7 +15,7 @@ const DestinyMarquee = ({
       <a className="m-4 w-full bg-white rounded ">
         <Image
           className="lg:h-48 md:h-36 w-full object-cover object-center"
-          src={`http://47.254.192.86:4000/assets/${image}`}
+          src={`${process.env.NEXT_PUBLIC_API}/assets/${image}`}
           alt={name}
           width={0.2}
           height={0.13}

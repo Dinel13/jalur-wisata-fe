@@ -21,7 +21,7 @@ export const getServersideprops: GetServerSideProps = async (context) => {
 
   const { did } = context.query;
   console.log(did);
-  const res = await fetch(`http://47.254.192.86:4000/v1/destiny/${did}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/v1/destiny/${did}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -55,7 +55,7 @@ const Destiny = (props: Props) => {
   //  }
 
   useEffect(() => {
-    fetch(`http://47.254.192.86:4000/v1/destiny/${did}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API}/v1/destiny/${did}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -82,7 +82,7 @@ const Destiny = (props: Props) => {
               width={1}
               height={0.5}
               layout="responsive"
-              src={`http://47.254.192.86:4000/assets/${destiny.image}`}
+              src={`${process.env.NEXT_PUBLIC_API}/assets/${destiny.image}`}
               alt={destiny.name}
             />
           <p>{destiny.description}</p>

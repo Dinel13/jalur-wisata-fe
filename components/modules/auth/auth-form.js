@@ -8,7 +8,7 @@ import { ButtonPending, ButtonSubmit } from "../../elements/button";
 import { notifData, showNotification } from "../../../store/notifSlice";
 
 async function signIn(email, password) {
-  const response = await fetch("http://47.254.192.86:4000/v1/login", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/v1/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -26,7 +26,7 @@ async function signIn(email, password) {
 }
 
 async function signUp(email, password) {
-  const response = await fetch("http://47.254.192.86:4000/v1/signup", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/v1/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

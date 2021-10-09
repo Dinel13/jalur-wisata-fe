@@ -6,7 +6,7 @@ const AllDestiny = () => {
   const [destiny, setDestiny] = useState<destinyProps[]>(null);
 
   useEffect(() => {
-    fetch(`http://47.254.192.86:4000/v1/destinies`, {
+    fetch(`${process.env.NEXT_PUBLIC_API}/v1/destinies`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

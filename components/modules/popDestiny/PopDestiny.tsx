@@ -10,7 +10,7 @@ const PopDestiny = (): JSX.Element => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://47.254.192.86:4000/v1/pop-destinies`, {
+    fetch(`${process.env.NEXT_PUBLIC_API}/v1/pop-destinies`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
