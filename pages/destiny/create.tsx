@@ -46,7 +46,7 @@ const CreatDestiny = () => {
     formdata.append("rating", ratingRef.current!.value);
     formdata.append("category", categoryRef.current!.value);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API}/v1/new-destiny`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API}/v1/destiny`, {
         method: "POST",
         // attach token in header
         headers : {
