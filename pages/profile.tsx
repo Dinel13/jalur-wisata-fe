@@ -1,22 +1,25 @@
 import { NextRouter, useRouter } from "next/router";
 import { useEffect } from "react";
+import { useAppSelector } from "../hooks/hooks";
+import { selectName } from "../store/authSlice";
 
 function Profile() {
-  const router: NextRouter = useRouter()
-   // cek if there token in local storage
-   // if token not exist, redirect to login page
-   useEffect(() => {
-      if (!localStorage.getItem("kyupsr")) {
-         router.push("/auth");
-      }
-   })
+  const router: NextRouter = useRouter();
+  const name = useAppSelector(selectName);
+
+  useEffect(() => {
+    console.log(name);
+    if (!name) {
+      router.push("/auth");
+    }
+  });
   return (
     <>
-      <h1>Profile</h1>
+      <h1>hello {name}</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-        doloremque, quos quod quaerat, quae quam cumque, voluptate
-        reprehenderit dolorum, dolore nam quisquam.
+        doloremque, quos quod quaerat, quae quam cumque, voluptate reprehenderit
+        dolorum, dolore nam quisquam.
       </p>
     </>
   );
@@ -24,7 +27,7 @@ function Profile() {
 
 // export async function getServerSideProps(context) {
 //    const session = await getSession({ req: context.req });
- 
+
 //    if (!session) {
 //      return {
 //        redirect: {
@@ -33,11 +36,10 @@ function Profile() {
 //        },
 //      };
 //    }
- 
+
 //    return {
 //      props: { session },
 //    };
 //  }
- 
- export default Profile;
- 
+
+export default Profile;
