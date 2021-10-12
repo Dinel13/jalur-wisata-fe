@@ -34,15 +34,15 @@
   }
 
   .btn-pri {
-    @apply bg-pink-600 text-white focus:outline-none hover:bg-pink-700  rounded transition-colors duration-150;
+    @apply bg-purple-500 text-white focus:outline-none hover:bg-purple-700  rounded transition-colors duration-150;
   }
 
   .btn-sec {
-    @apply bg-pink-400 text-white focus:outline-none hover:bg-pink-600 rounded transition-colors duration-150;
+    @apply bg-purple-400 text-white focus:outline-none hover:bg-purple-600 rounded transition-colors duration-150;
   }
 
   .btn-ter {
-    @apply text-white bg-red-700 focus:outline-none hover:bg-red-600 rounded transition-colors duration-150;
+    @apply text-white bg-purple-700 focus:outline-none hover:bg-purple-600 rounded transition-colors duration-150;
   }
 
   .form-card {

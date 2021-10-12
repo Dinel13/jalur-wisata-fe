@@ -9,7 +9,7 @@ const MainNavigation: FC = () => {
   const name = useAppSelector(selectName);
 
   return (
-    <header className="w-full bg-pink-800 text-white px-6 py-4 flex justify-between items-center ">
+    <header className="w-full bg-purple-400 text-white px-6 py-4 flex justify-between items-center ">
       <Link href="/">
         <a>
           <div className="text-2xl font-bold">Jalur Wisata</div>

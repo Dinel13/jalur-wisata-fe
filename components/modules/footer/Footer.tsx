@@ -2,7 +2,7 @@ import Link from "next/link";
 
 function Footer(): JSX.Element {
   return (
-    <footer className="text-white body-font bg-pink-800">
+    <footer className="text-white body-font bg-purple-500">
       <div className="container px-5 py-12 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
           <Link href="/">
@@ -69,7 +69,7 @@ function Footer(): JSX.Element {
           </div>
         </div>
       </div>
-      <div className="bg-pink-900">
+      <div className="bg-purple-700">
         <div className="container mx-auto py-3 px-5 flex flex-wrap flex-col sm:flex-row">
           <p className="text-gray-300 text-sm text-center sm:text-left">
             ©2021 jalur-wisata by
